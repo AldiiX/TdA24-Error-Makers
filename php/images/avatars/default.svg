@@ -1,0 +1,20 @@
+  <svg id="Shape" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #74c7d3;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="Obdélník_1" data-name="Obdélník 1" class="cls-1" width="1000" height="1000"/>
+  <circle id="Elipsa_1" data-name="Elipsa 1" class="cls-2" cx="500.5" cy="367.5" r="140.5"/>
+  <path id="Tvar_1" data-name="Tvar 1" class="cls-3" d="M729,712H272c-27.052-8.086-24-35-24-35,2.98-17.8,26.542-53.628,28.984-56.806C305.42,583.183,366.684,528.179,398,545c111.447,59.861,205-1,205-1,77.426,15.894,111,66,111,66,27.559,29.434,37,67,37,67,4.349,27.011-18,34-18,34"/>
+</svg>

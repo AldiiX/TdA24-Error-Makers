@@ -1,0 +1,15 @@
+DirectoryIndex lecturers.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /api/
+
+    # Pokud URL začíná na /lecturers/ a obsahuje něco za /lecturers/, přesměruj na /lecturers.php?q=...
+    RewriteRule ^lecturers/(.*)$ lecturers.php?q=$1 [QSA,L]
+    RewriteRule ^reservations/(.*)$ reservations.php?q=$1 [QSA,L]
+
+    # Vynechání přípony .php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+)$ $1.php [L]
+</IfModule>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "home",
+    "name": "Domů",
+    "href": "/",
+    "icon": "home.svg"
+  },
+  {
+    "id": "lecturers",
+    "name": "Učitelé",
+    "href": "/lecturers",
+    "icon": "lecturers.svg"
+  },
+  {
+    "id": "activities",
+    "name": "Aktivity",
+    "href": "/activities",
+    "icon": "activities.svg"
+  }
+]

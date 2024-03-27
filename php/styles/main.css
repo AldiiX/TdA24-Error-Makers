@@ -1,0 +1,2260 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 23.03px;
+  transition-duration: 0.3s;
+}
+
+::-webkit-scrollbar-track {
+  background: #333333;
+  border: 0;
+  box-shadow: unset;
+  transition-duration: 0.3s;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 23.03px;
+  border: 0;
+  transition-duration: 0.3s;
+}
+
+html {
+  --color-main: #74C7D3;
+  --color-light: white;
+  --color-dark: #333333;
+  --color-extra-blue: #00384D;
+  --color-extra-yellow: #FECB2E;
+  width: 100%;
+  overflow-x: hidden;
+}
+html body {
+  background-color: var(--color-dark);
+  color: white;
+  display: block;
+}
+html .main {
+  position: relative;
+  min-height: 55vh;
+  display: block;
+  margin-top: 25vh;
+}
+html .main h1:is(.mainh1) {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  font-size: 5vw;
+  top: 0;
+}
+html .main h1:is(.mainh1)::after {
+  content: "";
+  position: absolute;
+  background-color: #74C7D3;
+  width: 35%;
+  height: 0.3vw;
+  bottom: 1.8vw;
+  right: 0;
+  border-radius: 50px;
+}
+html .pb {
+  padding-bottom: 30vh;
+}
+html #page-transition-animation-div {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  background-color: #333333;
+  background-size: 25vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: ease page-transition-animation-div-animation 0.5s;
+  animation-iteration-count: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes page-transition-animation-div-animation {
+  0% {
+    pointer-events: all;
+    opacity: 1;
+  }
+  40% {
+    pointer-events: all;
+    opacity: 1;
+  }
+  100% {
+    pointer-events: none;
+    opacity: 0;
+    background-size: 28vw;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#modalblur {
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 2;
+  backdrop-filter: blur(5px) brightness(0.5);
+  animation: modalblur 0.2s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+}
+@keyframes modalblur {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#modal-lecturercalendar,
+#lecturer-calendar {
+  flex-direction: column;
+  min-width: 330px;
+  min-height: 300px;
+  background-color: #333333;
+  border-radius: 12px;
+  animation: modal-lecturercalendar 0.3s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+@keyframes modal-lecturercalendar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#modal-lecturercalendar .top,
+#lecturer-calendar .top {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: #262626;
+  border-radius: 12px 12px 0 0;
+}
+#modal-lecturercalendar .top .closeicon,
+#lecturer-calendar .top .closeicon {
+  width: 30px;
+  height: 30px;
+  right: 25px;
+  position: absolute;
+  background-image: url(../images/icons/close.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .top .closeicon:hover,
+#lecturer-calendar .top .closeicon:hover {
+  filter: brightness(0.5);
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .top p,
+#lecturer-calendar .top p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25px;
+}
+#modal-lecturercalendar .bottom,
+#lecturer-calendar .bottom {
+  flex-grow: 1;
+  position: relative;
+  padding: 25px;
+}
+#modal-lecturercalendar .bottom .month-controls,
+#lecturer-calendar .bottom .month-controls {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: center;
+}
+#modal-lecturercalendar .bottom .month-controls .maintext,
+#lecturer-calendar .bottom .month-controls .maintext {
+  width: 120px;
+  text-align: center;
+}
+#modal-lecturercalendar .bottom .month-controls .back,
+#modal-lecturercalendar .bottom .month-controls .forward,
+#lecturer-calendar .bottom .month-controls .back,
+#lecturer-calendar .bottom .month-controls .forward {
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .month-controls .back:hover,
+#modal-lecturercalendar .bottom .month-controls .forward:hover,
+#lecturer-calendar .bottom .month-controls .back:hover,
+#lecturer-calendar .bottom .month-controls .forward:hover {
+  filter: brightness(0.5);
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .month-controls .back,
+#lecturer-calendar .bottom .month-controls .back {
+  background-image: url(../images/icons/arrow_left.svg);
+}
+#modal-lecturercalendar .bottom .month-controls .forward,
+#lecturer-calendar .bottom .month-controls .forward {
+  background-image: url(../images/icons/arrow_right.svg);
+}
+#modal-lecturercalendar .bottom .flex,
+#lecturer-calendar .bottom .flex {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  height: 325px;
+  gap: 80px;
+}
+#modal-lecturercalendar .bottom .flex #calendar table,
+#lecturer-calendar .bottom .flex #calendar table {
+  font-size: 20px;
+  border-spacing: 0;
+  font-family: opensans-medium, sans-serif;
+  text-align: center;
+  height: 300px;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tr th, #modal-lecturercalendar .bottom .flex #calendar table tr td,
+#lecturer-calendar .bottom .flex #calendar table tr th,
+#lecturer-calendar .bottom .flex #calendar table tr td {
+  min-width: 50px;
+  width: auto;
+  height: auto;
+  min-height: 50px;
+  padding: 10px;
+}
+#modal-lecturercalendar .bottom .flex #calendar table thead,
+#modal-lecturercalendar .bottom .flex #calendar table thead tr,
+#modal-lecturercalendar .bottom .flex #calendar table thead tr th,
+#lecturer-calendar .bottom .flex #calendar table thead,
+#lecturer-calendar .bottom .flex #calendar table thead tr,
+#lecturer-calendar .bottom .flex #calendar table thead tr th {
+  color: #74C7D3;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td {
+  position: relative;
+  user-select: none;
+  color: gray;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:before {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  content: "";
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1000px;
+  transition-duration: 0.3s;
+  border: transparent solid 2px;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected) {
+  color: white !important;
+  transition-duration: 0.3s;
+  pointer-events: none;
+  border-color: transparent;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-you):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-you):before {
+  background-color: #369cab;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-you):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-you):before {
+  background-color: #995656;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.not-reserved):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.not-reserved):before {
+  background-color: #589951;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-full),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-full) {
+  background: unset;
+  font-weight: normal;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-full):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):is(.reserved-not-full):before {
+  background: linear-gradient(-45deg, #995656 50%, #589951 50%);
+  border-bottom: solid 2px #995656;
+  border-right: solid 2px #995656;
+  border-left: solid 2px #589951;
+  border-top: solid 2px #589951;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):not(.reserved-not-full):not(.reserved-you):not(.reserved-not-you):not(.not-reserved),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):not(.reserved-not-full):not(.reserved-you):not(.reserved-not-you):not(.not-reserved) {
+  color: black !important;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):not(.reserved-not-full):not(.reserved-you):not(.reserved-not-you):not(.not-reserved):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):not(.reserved-not-full):not(.reserved-you):not(.reserved-not-you):not(.not-reserved):before {
+  background-color: gray;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.selected):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.selected):before {
+  outline-color: transparent !important;
+  border-color: transparent;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-you), #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you), #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.not-reserved), #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-you),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.not-reserved),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full) {
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-you):hover, #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you):hover, #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.not-reserved):hover, #modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full):hover,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-you):hover,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you):hover,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.not-reserved):hover,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full):hover {
+  scale: 1.2;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-you),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-you) {
+  color: #74C7D3;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-you):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-you):before {
+  outline: solid 2px #74C7D3;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you) {
+  color: rgb(255, 121, 121);
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-you):before {
+  outline: solid 2px rgb(255, 121, 121);
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.not-reserved),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.not-reserved) {
+  color: rgb(126, 255, 112);
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.not-reserved):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.not-reserved):before {
+  outline: solid 2px rgb(126, 255, 112);
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full),
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full) {
+  background: -webkit-linear-gradient(135deg, rgb(255, 121, 121) 50%, rgb(126, 255, 112) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+#modal-lecturercalendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full):before,
+#lecturer-calendar .bottom .flex #calendar table tbody tr td:is(.reserved-not-full):before {
+  border-bottom: solid 2px rgb(255, 121, 121);
+  border-right: solid 2px rgb(255, 121, 121);
+  border-left: solid 2px rgb(126, 255, 112);
+  border-top: solid 2px rgb(126, 255, 112);
+}
+#modal-lecturercalendar .bottom .flex #calendar .loadingdiv,
+#lecturer-calendar .bottom .flex #calendar .loadingdiv {
+  width: 350px;
+  height: 300px;
+  background-image: url(../images/icons/loading.svg);
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  animation: lecturerscalendar-loadingdiv-animation 0.3s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+}
+@keyframes lecturerscalendar-loadingdiv-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#modal-lecturercalendar .bottom .flex #dayprops,
+#lecturer-calendar .bottom .flex #dayprops {
+  width: 250px;
+  min-height: 100px;
+}
+#modal-lecturercalendar .bottom .flex #dayprops p:is(.h),
+#lecturer-calendar .bottom .flex #dayprops p:is(.h) {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
+  padding: 10px 0;
+  color: #74C7D3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent,
+#lecturer-calendar .bottom .flex #dayprops .days-parent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: daysparent-fadein 0.5s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+  max-height: 252px;
+  overflow-y: auto;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent::-webkit-scrollbar,
+#lecturer-calendar .bottom .flex #dayprops .days-parent::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 23.03px;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent:not(:has(.lesson)) .nodata,
+#lecturer-calendar .bottom .flex #dayprops .days-parent:not(:has(.lesson)) .nodata {
+  display: grid;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson {
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson p,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson p {
+  margin: 0;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson p:is(.status),
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson p:is(.status) {
+  max-width: 185px;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you),
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you) {
+  background-color: #369cab;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you) .reserve-delete-button,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you) .reserve-delete-button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("../images/icons/reserve_delete.svg");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you) .reserve-delete-button:hover,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-you) .reserve-delete-button:hover {
+  opacity: 0.3;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-not-you),
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.reserved-not-you) {
+  background-color: rgba(255, 121, 121, 0.5);
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved),
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved) {
+  background-color: rgba(126, 255, 112, 0.5);
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved) .reservebutton,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved) .reservebutton {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("../images/icons/reserve.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved) .reservebutton:hover,
+#lecturer-calendar .bottom .flex #dayprops .days-parent .lesson:is(.not-reserved) .reservebutton:hover {
+  opacity: 0.3;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent p:is(.add),
+#lecturer-calendar .bottom .flex #dayprops .days-parent p:is(.add) {
+  text-align: center;
+  color: #74C7D3;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#modal-lecturercalendar .bottom .flex #dayprops .days-parent p:is(.add):hover,
+#lecturer-calendar .bottom .flex #dayprops .days-parent p:is(.add):hover {
+  color: #2a7984;
+  transition-duration: 0.3s;
+}
+@keyframes daysparent-fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#modal-lecturercalendar .bottom .confirmation,
+#lecturer-calendar .bottom .confirmation {
+  display: none;
+  height: 405px;
+  min-width: 680px;
+  animation: lectcalendar-confirmation-fadein 0.3s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+}
+#modal-lecturercalendar .bottom .confirmation .center,
+#lecturer-calendar .bottom .confirmation .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#modal-lecturercalendar .bottom .confirmation .center p,
+#lecturer-calendar .bottom .confirmation .center p {
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+}
+#modal-lecturercalendar .bottom .confirmation .center .buttons,
+#lecturer-calendar .bottom .confirmation .center .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+#modal-lecturercalendar .bottom .confirmation .center .buttons input[type=submit],
+#modal-lecturercalendar .bottom .confirmation .center .buttons button,
+#lecturer-calendar .bottom .confirmation .center .buttons input[type=submit],
+#lecturer-calendar .bottom .confirmation .center .buttons button {
+  font-size: 22px;
+  width: 140px;
+  padding: 10px 30px;
+}
+@keyframes lectcalendar-confirmation-fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#modal-lecturercalendar .bottom .confirmation .center .g-recaptcha,
+#lecturer-calendar .bottom .confirmation .center .g-recaptcha {
+  margin: 0 auto;
+  margin-top: 5px;
+}
+#modal-lecturercalendar .bottom .confirmation .center .g-recaptcha #rc-anchor-container,
+#lecturer-calendar .bottom .confirmation .center .g-recaptcha #rc-anchor-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+}
+#modal-lecturercalendar .bottom .err,
+#lecturer-calendar .bottom .err {
+  width: 70%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  user-select: none;
+}
+#modal-lecturercalendar .bottom .err a,
+#lecturer-calendar .bottom .err a {
+  color: var(--color-main);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  text-decoration: none;
+  font-weight: bolder;
+}
+#modal-lecturercalendar .bottom .err a:hover,
+#lecturer-calendar .bottom .err a:hover {
+  color: #2a7984;
+  transition-duration: 0.3s;
+}
+
+#HEADER {
+  display: none;
+  width: 75vw;
+  height: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 20px;
+  transition-duration: 0.3s;
+  margin-top: 2vh;
+  z-index: 2;
+  top: 0;
+}
+@media screen and (max-width: 952px) {
+  #HEADER .userdiv .flexdiv .texts {
+    display: none;
+  }
+}
+#HEADER .logo {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url("../images/logo/color_white.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 7.5%;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+#HEADER .logo:hover {
+  filter: brightness(0.5);
+}
+#HEADER .menu-parent {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  justify-content: center;
+  pointer-events: none;
+}
+#HEADER .menu-parent .menu-child {
+  pointer-events: all;
+  font-weight: bold;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  color: white;
+  text-decoration: none;
+}
+#HEADER .menu-parent .menu-child:hover {
+  color: #2a7984;
+}
+#HEADER .mobile-menu-icon {
+  display: none;
+}
+#HEADER .login-button {
+  position: absolute;
+  right: 7.5%;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 16px;
+}
+#HEADER .userdiv {
+  text-decoration: none;
+  color: white;
+  position: absolute;
+  width: fit-content;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-width: 60px;
+  right: 7.5%;
+  transition-duration: 0.3s;
+}
+#HEADER .userdiv:hover .flexdiv .texts {
+  filter: brightness(0.5);
+}
+#HEADER .userdiv:hover .flexdiv .avatar {
+  filter: invert(0.3) brightness(0.8);
+}
+#HEADER .userdiv .flexdiv {
+  transition-duration: inherit;
+  position: relative;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+#HEADER .userdiv .flexdiv .texts {
+  transition-duration: inherit;
+  position: relative;
+}
+#HEADER .userdiv .flexdiv .texts p:nth-child(2) {
+  font-size: 20px;
+  font-weight: bold;
+  transition-duration: inherit;
+  color: #74C7D3;
+}
+#HEADER .userdiv .flexdiv .avatar {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #74C7D3;
+  user-select: none;
+  border-radius: 10px;
+  transition-duration: inherit;
+}
+
+body[id=HELLO] div[class=page-center] {
+  margin-top: -2vw;
+}
+body[id=HELLO] #hellotda {
+  font-size: 7vw;
+  font-weight: 1000;
+  user-select: none;
+  margin: 0;
+  text-align: center;
+}
+body[id=HELLO] #hellotda a {
+  color: var(--color-main);
+  font-family: opensans, sans-serif;
+  animation: hellotda-animation 4s ease-in infinite;
+  text-shadow: var(--color-main) 0 0 10px, var(--color-main) 0 0 10px;
+}
+@keyframes hellotda-animation {
+  0% {
+    text-shadow: transparent 0 0 10px, transparent 0 0 10px;
+  }
+  45% {
+    text-shadow: var(--color-main) 0 0 10px, var(--color-main) 0 0 10px;
+  }
+  50% {
+    text-shadow: var(--color-main) 0 0 10px, var(--color-main) 0 0 10px;
+  }
+  100% {
+    text-shadow: transparent 0 0 10px, transparent 0 0 10px;
+  }
+}
+body[id=HELLO] #hellotda-p {
+  font-family: Consolas, serif;
+  font-size: 1vw;
+  animation: hellotda-p-animation infinite 7s linear;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  height: 1.2vw !important;
+  user-select: none;
+}
+@keyframes hellotda-p-animation {
+  0% {
+    width: 0;
+  }
+  20% {
+    width: 0;
+  }
+  70% {
+    width: 100%;
+  }
+  90% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+body[id=LECTURER] .main .table {
+  display: flex;
+  width: calc(75vw - 11.25%);
+  margin: 0 auto;
+  gap: 100px;
+  justify-content: space-between;
+}
+body[id=LECTURER] .main .table .left h1 {
+  line-height: 90px;
+  font-size: 90px;
+  margin: 0;
+}
+body[id=LECTURER] .main .table .left h1:after {
+  height: 7px;
+  bottom: 7px;
+  right: unset;
+  left: 0;
+}
+body[id=LECTURER] .main .table .left .title {
+  font-size: 50px;
+  line-height: 50px;
+  color: #74C7D3;
+}
+body[id=LECTURER] .main .table .left .title::after {
+  content: unset;
+}
+body[id=LECTURER] .main .table .left .bio {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #b3b3b3;
+  overflow-x: clip;
+  max-width: 40vw;
+}
+body[id=LECTURER] .main .table .left .rezervacebutton {
+  font-size: 16px;
+  padding: 5px 40px;
+  border-radius: 10px;
+}
+body[id=LECTURER] .main .table .left .cilt {
+  gap: 30px;
+  display: grid;
+}
+body[id=LECTURER] .main .table .left .cilt .cil {
+  display: flex;
+  gap: 30px;
+  align-items: start;
+}
+body[id=LECTURER] .main .table .left .contact {
+  display: grid;
+  width: fit-content;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  border-radius: 18px;
+  gap: 5px;
+}
+body[id=LECTURER] .main .table .left .contact:is(.tags) .tagsflex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+body[id=LECTURER] .main .table .left .contact:is(.tags) .tagsflex div {
+  background-color: #262626;
+  padding: 10px 20px;
+  border-radius: 40px;
+}
+body[id=LECTURER] .main .table .left .contact .c {
+  color: #74C7D3;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+body[id=LECTURER] .main .table .left .contact .loginwarn a {
+  color: #74C7D3;
+}
+body[id=LECTURER] .main .table .left .contact .child {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+}
+body[id=LECTURER] .main .table .left .contact .child .image {
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+body[id=LECTURER] .main .table .right .avatar {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  border-radius: 100vw;
+  background-color: #74C7D3;
+  background-image: url("../images/avatars/default.svg");
+}
+
+body[id=HOME] .main {
+  height: calc(100vh + 100px);
+  width: 75vw;
+  margin: 0 auto;
+  position: relative;
+  top: 0;
+}
+body[id=HOME] .main .blob {
+  background-image: url("../images/blob.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: 75vw;
+  width: 60vw;
+  height: 60vw;
+  margin-top: -2.5vw;
+}
+body[id=HOME] .main .flex-parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5vw;
+}
+body[id=HOME] .main .flex-parent .flex-child {
+  position: relative;
+  display: grid;
+  width: fit-content;
+  max-width: 35vw;
+  margin-left: 7.5%;
+}
+body[id=HOME] .main .flex-parent .flex-child h1 {
+  position: relative;
+  width: fit-content;
+  font-size: 5vw;
+  color: #74C7D3;
+  font-family: Lalezar, sans-serif;
+  margin-top: -1.7vw;
+  margin-bottom: -1.7vw;
+}
+body[id=HOME] .main .flex-parent .flex-child h1:nth-child(1) {
+  color: white;
+}
+body[id=HOME] .main .flex-parent .flex-child h1:nth-child(1) span {
+  font-size: 5vw;
+  text-align: center;
+  vertical-align: center;
+  margin-left: 0.5vw;
+  color: #74C7D3;
+}
+body[id=HOME] .main .flex-parent .flex-child .content {
+  margin-top: 0.8vw;
+  font-size: 1vw;
+  line-height: 1.5vw;
+  letter-spacing: 0.1vw;
+  align-items: center;
+}
+body[id=HOME] .main .flex-parent .flex-child .content span {
+  font-size: 1vw;
+  text-align: center;
+  vertical-align: center;
+  margin-right: 0.5vw;
+  color: #74C7D3;
+}
+body[id=HOME] .main .statistics {
+  margin-left: 7.5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3vw;
+  margin-top: 3vw;
+  position: absolute;
+}
+body[id=HOME] .main .statistics div p:nth-child(1) {
+  font-weight: bolder;
+  font-size: 1.7vw;
+}
+body[id=HOME] .main .statistics div p:nth-child(2) {
+  font-size: 0.9vw;
+}
+
+@media screen and (max-width: 1328px) {
+  body[id=LECTURERS] .main .lecturers {
+    max-width: 80vw;
+    width: 80vw;
+  }
+}
+body[id=LECTURERS] .searchbar {
+  flex-wrap: wrap;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 75vw;
+}
+body[id=LECTURERS] .searchbar div {
+  position: relative;
+}
+body[id=LECTURERS] .searchbar .text {
+  position: absolute;
+  left: 5px;
+  top: -30px;
+  color: #74C7D3;
+}
+body[id=LECTURERS] .searchbar .tags {
+  width: 400px;
+}
+body[id=LECTURERS] .searchbar .city {
+  width: 100px;
+}
+body[id=LECTURERS] .searchbar .minprice,
+body[id=LECTURERS] .searchbar .maxprice {
+  width: 130px;
+}
+body[id=LECTURERS] .searchbar input[type=text],
+body[id=LECTURERS] .searchbar select,
+body[id=LECTURERS] .searchbar input[type=date],
+body[id=LECTURERS] .searchbar input[type=number] {
+  max-width: 80vw !important;
+  font-size: 18px;
+  color: #d5d5d5;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  transition-duration: 0.1s;
+  font-family: opensans-medium, sans-serif;
+}
+body[id=LECTURERS] .searchbar input[type=text]:focus-visible,
+body[id=LECTURERS] .searchbar select:focus-visible,
+body[id=LECTURERS] .searchbar input[type=date]:focus-visible,
+body[id=LECTURERS] .searchbar input[type=number]:focus-visible {
+  transition-duration: 0.1s;
+  outline: unset;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body[id=LECTURERS] .searchbar select option {
+  background-color: #262626;
+  border: unset;
+}
+body[id=LECTURERS] .searchbar select option:hover, body[id=LECTURERS] .searchbar select option:active {
+  background-color: #74C7D3;
+}
+body[id=LECTURERS] .searchbar input[type=submit][name=search] {
+  position: relative;
+  bottom: 0px;
+  font-size: 20px;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+  z-index: 0;
+}
+body[id=LECTURERS] .searchbar .submitdiv {
+  width: 50px;
+}
+body[id=LECTURERS] .searchbar .submitdiv div {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-image: url("../images/icons/lupa.svg");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+body[id=LECTURERS] .lecturers {
+  position: relative;
+  display: grid;
+  gap: 50px;
+  margin: 0 auto;
+  margin-top: 100px;
+  width: calc(75vw - 11.25%);
+  max-width: 1024px;
+}
+body[id=LECTURERS] .lecturers .vizitka {
+  gap: 50px;
+  color: unset;
+  text-decoration: unset;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+}
+body[id=LECTURERS] .lecturers .vizitka:hover {
+  transition-duration: 0.3s;
+  scale: 1.05;
+}
+body[id=LECTURERS] .lecturers .vizitka #pfp {
+  border-radius: 50%;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #74C7D3;
+  background-image: url("../images/avatars/default.svg");
+}
+body[id=LECTURERS] .lecturers .vizitka .description {
+  gap: 12px;
+  display: flex;
+  position: relative;
+  width: calc(100% - 200px - 50px);
+  flex-direction: column;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  font-size: 50px;
+  font-family: Lalezar, sans-serif !important;
+  flex-wrap: wrap;
+  line-height: 52px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span {
+  font-family: inherit;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span[class=name] {
+  color: #74C7D3;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span {
+  font-family: inherit;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span[class=name] {
+  color: #74C7D3;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span[class=location] {
+  margin-left: 20px;
+  font-size: 30px;
+  color: #999999;
+  font-weight: bolder;
+}
+body[id=LECTURERS] .lecturers .vizitka .description h1 span[class=title] {
+  font-family: inherit;
+  font-size: 30px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #location {
+  display: flex;
+  width: fit-content;
+  margin-top: 20px;
+  align-items: center;
+  gap: 5px;
+  margin-left: 15px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #location div {
+  width: 19px;
+  height: 19px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../images/icons/location.svg");
+}
+body[id=LECTURERS] .lecturers .vizitka .description #location p {
+  font-size: 14px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #claim {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #999999;
+  margin-top: -15px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #bio {
+  margin-top: 20px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #tags {
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #tags div {
+  background-color: #262626;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+body[id=LECTURERS] .lecturers .vizitka .description #tags div:is(.locpr) {
+  background-color: #74C7D3;
+  color: black;
+}
+
+#FOOTER {
+  padding: 50px 0;
+  min-height: 400px;
+  width: 100vw;
+  position: relative;
+  background-color: #212121;
+}
+#FOOTER .content .content-flex {
+  display: flex;
+  justify-content: space-around;
+  width: calc(75vw - 11.25%);
+  margin: 0 auto;
+}
+#FOOTER .content .content-flex .c a, #FOOTER .content .content-flex p:not(#navigace, #team) {
+  font-size: 16px;
+}
+#FOOTER .content .content-flex .c #team {
+  text-align: center;
+}
+#FOOTER .content .content-flex .c #navigace,
+#FOOTER .content .content-flex .c #team,
+#FOOTER .content .content-flex .c #ostatni {
+  font-family: Lalezar, sans-serif;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 12px;
+  border-bottom: solid 2px;
+  border-bottom-color: #74C7D3;
+}
+#FOOTER .content .content-flex .c1 a,
+#FOOTER .content .content-flex .c3 a {
+  text-decoration: none;
+  color: white;
+  transition-duration: 0.3s;
+  user-select: none;
+}
+#FOOTER .content .content-flex .c1 a:hover,
+#FOOTER .content .content-flex .c3 a:hover {
+  color: #2a7984;
+  transition-duration: 0.3s;
+}
+#FOOTER .content .content-flex .c2 .p {
+  color: #74C7D3;
+}
+#FOOTER .content #line {
+  background-color: #333333;
+  height: 2px;
+  width: calc(75vw - 11.25%);
+  margin: 50px auto;
+  position: relative;
+}
+#FOOTER .content .logo {
+  background-image: url("../images/logo/color_white.svg");
+  background-size: cover;
+  background-position: center;
+  height: 100px;
+  width: 150px;
+  position: relative;
+  margin: 50px auto 30px;
+}
+#FOOTER .content .copyright {
+  text-align: center;
+  cursor: default;
+  text-decoration: none;
+  color: white;
+}
+#FOOTER .content .copyright a {
+  color: #74C7D3;
+  text-decoration: inherit;
+}
+#FOOTER .content .copyright a[class=c] {
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+#FOOTER .content .copyright a[class=c]:hover {
+  color: #2a7984;
+}
+#FOOTER .content .copyr {
+  margin-bottom: 10px;
+  color: white;
+}
+#FOOTER .content .ostatni {
+  margin-top: 10px;
+  text-align: center;
+}
+#FOOTER .content .ostatni a {
+  text-decoration: none;
+  color: white;
+}
+#FOOTER .content .ostatni a:hover {
+  color: #b3b3b3;
+  transition-duration: 0.3s;
+}
+#FOOTER .divider {
+  position: absolute;
+  width: 100vw;
+  height: 100px;
+  background-image: url("../images/waves.svg");
+  rotate: 180deg;
+  top: -100px;
+}
+
+body[id=LOGIN],
+body[id=REGISTER] {
+  /*p {
+      font-size: 16px;
+  }*/
+}
+body[id=LOGIN] .blob,
+body[id=REGISTER] .blob {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-image: url("../images/blob_login.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body[id=LOGIN] .login-box,
+body[id=REGISTER] .login-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  border: none white;
+  border-radius: 30px;
+  margin: 0 auto;
+  font-family: opensans-medium, sans-serif;
+  margin-top: 60px;
+}
+body[id=LOGIN] .login-box .button-primary,
+body[id=REGISTER] .login-box .button-primary {
+  font-size: 20px;
+  padding: 10px 30px !important;
+  margin-top: 30px;
+  width: 100%;
+}
+body[id=LOGIN] .login-box .input-buttons,
+body[id=REGISTER] .login-box .input-buttons {
+  padding: 0 20px;
+  font-size: 20px;
+  height: 60px;
+  margin-bottom: 17px;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px;
+  color: white;
+  outline: none;
+  width: 100%;
+  transition-duration: 0.3s;
+  border-radius: 0;
+}
+body[id=LOGIN] .login-box .input-buttons::placeholder,
+body[id=REGISTER] .login-box .input-buttons::placeholder {
+  color: gray;
+  font-family: inherit;
+}
+body[id=LOGIN] .login-box .input-buttons:focus,
+body[id=REGISTER] .login-box .input-buttons:focus {
+  border-color: #74C7D3;
+  transition-duration: 0.3s;
+}
+body[id=LOGIN] .login-box .input-buttons:focus ~ label,
+body[id=REGISTER] .login-box .input-buttons:focus ~ label {
+  place-content: -5px;
+  transition: 0.5s;
+  top: -5px;
+}
+body[id=LOGIN] .login-box p,
+body[id=REGISTER] .login-box p {
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+body[id=LOGIN] .login-box .errormsg,
+body[id=REGISTER] .login-box .errormsg {
+  color: #ff6c6c;
+  text-align: center;
+}
+
+body[id=ACTIVITY] .main {
+  min-height: 100vh;
+}
+body[id=ACTIVITY] .main #activity {
+  padding: 20px;
+  width: 70vw;
+  margin: 0 auto;
+}
+body[id=ACTIVITY] .main #activity .head h1 {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  font-size: 4vw;
+  color: var(--color-main);
+}
+body[id=ACTIVITY] .main #activity .content {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+body[id=ACTIVITY] .main #activity .content .nazvy {
+  display: flex;
+  flex-direction: column;
+  min-width: 188px;
+  gap: 15px;
+  padding: 20px;
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+body[id=ACTIVITY] .main #activity .content .nazvy a {
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  width: fit-content;
+  color: rgba(255, 255, 255, 0.5);
+  transition-duration: 0.3s;
+  user-select: none;
+}
+body[id=ACTIVITY] .main #activity .content .nazvy a:hover {
+  transition-duration: 0.3s;
+  color: var(--color-main);
+  cursor: pointer;
+}
+body[id=ACTIVITY] .main #activity .content .bloky {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+body[id=ACTIVITY] .main #activity .content .bloky div {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  max-height: 300px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+body[id=ACTIVITIES] .main {
+  min-height: 80vh;
+}
+body[id=ACTIVITIES] .main .mainh1 {
+  height: fit-content;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+body[id=ACTIVITIES] .main .mainh1::after {
+  left: 0;
+}
+body[id=ACTIVITIES] .main form .searchbar {
+  flex-wrap: wrap;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 75vw;
+  align-items: center;
+}
+body[id=ACTIVITIES] .main form .searchbar .kontank {
+  position: relative;
+}
+body[id=ACTIVITIES] .main form .searchbar .kontank .text {
+  position: absolute;
+  left: 5px;
+  top: -30px;
+  color: var(--color-main);
+}
+body[id=ACTIVITIES] .main form .searchbar .kontank .tags {
+  font-size: 1.5vw;
+  padding: 18px;
+  width: 50vw;
+}
+body[id=ACTIVITIES] .main form .searchbar .submitdiv {
+  margin: auto 0;
+}
+body[id=ACTIVITIES] .main form .searchbar .submitdiv div {
+  display: block;
+  width: 62px;
+  height: 62px;
+  position: absolute;
+  background-image: url(../images/icons/lupa.svg);
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 10px;
+}
+body[id=ACTIVITIES] .main form .searchbar .submitdiv input[type=submit] {
+  position: relative;
+  bottom: 0px;
+  font-size: 20px;
+  padding: 0;
+  width: 62px;
+  height: 62px;
+  margin-left: auto;
+  z-index: 0;
+  border-radius: 10px;
+}
+body[id=ACTIVITIES] .main .add {
+  margin: 0 auto;
+  margin-top: -20px;
+  width: 20vw;
+  padding: 10px 20px;
+  font-size: 18px;
+  display: block;
+}
+body[id=ACTIVITIES] .main .activities {
+  display: grid;
+  justify-content: center;
+  width: 80vw;
+  margin: 0 auto;
+  margin-top: 100px;
+  gap: 25px;
+}
+body[id=ACTIVITIES] .main .activities .activity {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  color: unset;
+  text-decoration: none;
+  width: 100%;
+}
+body[id=ACTIVITIES] .main .activities .activity p {
+  width: fit-content;
+}
+body[id=ACTIVITIES] .main .activities .activity .name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #74C7D3;
+}
+body[id=ACTIVITIES] .main .activities .activity:hover {
+  scale: 1.05;
+  transition-duration: 0.3s;
+}
+@media screen and (max-width: 360px) {
+  body[id=ACTIVITIES] .main form .searchbar .submitdiv input[type=submit] {
+    width: 50px;
+    height: 50px;
+  }
+  body[id=ACTIVITIES] .main form .searchbar .submitdiv :nth-child(1) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 1084px) {
+  body[id=ACCOUNT] .main .mainh1 {
+    font-size: 11vw;
+    margin-bottom: 20px;
+  }
+  body[id=ACCOUNT] .main .mainh1::after {
+    height: 0.7vw;
+    bottom: 2.8vw;
+  }
+  body[id=ACCOUNT] .main .userinfointerface {
+    flex-direction: column;
+    width: 90vw;
+    gap: 50px;
+    align-items: center;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left {
+    width: 75vw;
+    padding: 30px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .avatar {
+    width: 150px;
+    height: 150px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .membersincetxt {
+    transform: none;
+    display: block;
+    position: unset;
+    margin-top: 10px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .info .pair p:nth-child(1) {
+    margin-bottom: 5px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right {
+    width: 75vw;
+    height: auto;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right input[type=text], body[id=ACCOUNT] .main .userinfointerface .right select, body[id=ACCOUNT] .main .userinfointerface .right input[type=date], body[id=ACCOUNT] .main .userinfointerface .right input[type=number] {
+    font-size: 17px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings {
+    /*div div p{
+        margin-bottom:8px;
+    }
+    div:first-child{
+        flex-wrap: nowrap !important;
+        .pair:nth-child(2){
+            input{
+                width: 100px;
+            }
+        }
+    }
+    div:nth-child(3){
+        flex-wrap: nowrap !important;
+        .pair:nth-child(2){
+            input{
+                width: 150px;
+            }
+        }
+    }*/
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings div {
+    display: grid !important;
+    gap: 30px !important;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings .pair {
+    gap: 0px !important;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings input {
+    width: 100% !important;
+    margin-top: 10px;
+  }
+}
+body[id=ACCOUNT] h1 {
+  pointer-events: none;
+}
+body[id=ACCOUNT] .logout-button {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  margin: -20px auto 40px auto;
+  gap: 5px;
+  align-items: center;
+  transition-duration: 0.3s;
+  user-select: none;
+  cursor: pointer;
+}
+body[id=ACCOUNT] .logout-button:hover {
+  filter: brightness(0.5);
+}
+body[id=ACCOUNT] .logout-button div {
+  width: 35px;
+  height: 35px;
+  background-image: url("../images/icons/logout.svg");
+  background-size: contain;
+  background-position: center;
+}
+body[id=ACCOUNT] .logout-button p {
+  height: auto;
+  font-size: 18px;
+}
+body[id=ACCOUNT] .window-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  margin: auto;
+  border-radius: 80px;
+  margin-bottom: 50px;
+  margin-top: 75px;
+}
+body[id=ACCOUNT] .window-selection p {
+  padding: 15px 25px;
+  border-radius: 80px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  font-size: 18px;
+  user-select: none;
+}
+body[id=ACCOUNT] .window-selection p:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+body[id=ACCOUNT] .userinfointerface {
+  position: relative;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 90vw;
+  min-height: 700px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 75px;
+  padding: 30px;
+  margin-top: 80px;
+  animation: fadein 0.3s infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+  border: solid 2px rgba(0, 0, 0, 0.1);
+}
+body[id=ACCOUNT] .userinfointerface .left {
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+}
+body[id=ACCOUNT] .userinfointerface .left .avatar {
+  position: relative;
+  background-color: #74C7D3;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 25px;
+}
+body[id=ACCOUNT] .userinfointerface .left .info {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+body[id=ACCOUNT] .userinfointerface .left .info .pair p:nth-child(1) {
+  color: #74C7D3;
+  font-weight: bold;
+}
+body[id=ACCOUNT] .userinfointerface .left .info .pair p:nth-child(2) {
+  color: white;
+}
+body[id=ACCOUNT] .userinfointerface .left .membersincetxt {
+  position: absolute;
+  bottom: 20px;
+  margin: 0 auto;
+  color: gray;
+  font-size: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+body[id=ACCOUNT] .userinfointerface .right {
+  position: relative;
+  width: 600px;
+  height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  line-break: anywhere;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+body[id=ACCOUNT] .userinfointerface .right .nadpis {
+  font-size: 24px;
+  color: #74C7D3;
+  font-weight: bolder;
+}
+body[id=ACCOUNT] .userinfointerface .right .errorp {
+  color: #ff6c6c;
+  position: absolute;
+  border-radius: 40px;
+  top: 0;
+  right: 0;
+  animation: fadeout 5s infinite;
+  animation-iteration-count: 1;
+  animation-delay: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  max-width: 400px;
+  height: fit-content;
+}
+@keyframes fadeout {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+body[id=ACCOUNT] .userinfointerface .right .successp {
+  max-width: 400px;
+  height: fit-content;
+  color: #63ff63;
+  position: absolute;
+  border-radius: 40px;
+  top: 0;
+  right: 0;
+  animation: fadeout 2s infinite;
+  animation-iteration-count: 1;
+  animation-delay: 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+@keyframes fadeout {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+body[id=ACCOUNT] .userinfointerface .right form[class=accountsettings] {
+  margin-top: 40px;
+  display: grid;
+  gap: 20px;
+}
+body[id=ACCOUNT] .userinfointerface .right form[class=accountsettings] .pair p {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+body[id=ACCOUNT] .userinfointerface .right input[type=text],
+body[id=ACCOUNT] .userinfointerface .right select,
+body[id=ACCOUNT] .userinfointerface .right textarea,
+body[id=ACCOUNT] .userinfointerface .right input[type=date],
+body[id=ACCOUNT] .userinfointerface .right input[type=number] {
+  font-size: 14px;
+  color: #d5d5d5;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 0.1s;
+  font-family: opensans-medium, sans-serif;
+}
+body[id=ACCOUNT] .userinfointerface .right input[type=text]:focus-visible,
+body[id=ACCOUNT] .userinfointerface .right select:focus-visible,
+body[id=ACCOUNT] .userinfointerface .right textarea:focus-visible,
+body[id=ACCOUNT] .userinfointerface .right input[type=date]:focus-visible,
+body[id=ACCOUNT] .userinfointerface .right input[type=number]:focus-visible {
+  transition-duration: 0.1s;
+  outline: unset;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body[id=ACCOUNT] .userinfointerface .right select option {
+  background-color: #262626;
+  border: unset;
+}
+body[id=ACCOUNT] .userinfointerface .right select option:hover, body[id=ACCOUNT] .userinfointerface .right select option:active {
+  background-color: #74C7D3;
+}
+body[id=ACCOUNT] .userinfointerface .right input[type=submit][name=save] {
+  position: relative;
+  bottom: 0px;
+  right: 100%;
+  transform: translateX(100%);
+  font-size: 20px;
+  padding: 10px 30px;
+  width: 150px;
+  margin-left: auto;
+}
+body[id=ACCOUNT] .userinfointerface .right .biotextarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  height: 40px;
+  transition-duration: 0s !important;
+  line-break: auto;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+body[id=ACCOUNT] #lecturer-calendar {
+  box-shadow: none;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid 2px rgba(0, 0, 0, 0.1);
+}
+body[id=ACCOUNT] #lecturer-calendar .bottom .flex #calendar table tbody tr td {
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+body[id=ACCOUNT] #lecturer-calendar .bottom .flex #calendar table tbody tr td:hover {
+  scale: 1.2;
+  transition-duration: 0.3s;
+  color: white;
+}
+body[id=ACCOUNT] #lecturer-calendar .bottom .flex .reserve-delete-button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url("../images/icons/reserve_delete.svg");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+body[id=ACCOUNT] #lecturer-calendar .bottom .flex .reserve-delete-button:hover {
+  opacity: 0.3;
+  transition-duration: 0.3s;
+}
+body[id=ACCOUNT] .exportcal {
+  text-align: center;
+  color: #74C7D3;
+  margin-top: 25px;
+  text-decoration: underline;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+body[id=ACCOUNT] .exportcal:hover {
+  filter: brightness(0.5);
+  transition-duration: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  body.active {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  #HEADER .login-button {
+    position: absolute;
+    pointer-events: none;
+    left: 200%;
+  }
+  #HEADER .menu-parent {
+    display: none;
+  }
+  #HEADER .userdiv {
+    display: none;
+  }
+  #HEADER .mobile-menu-icon {
+    display: unset;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 7.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url("../images/icons/menu.svg");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu {
+    width: fit-content;
+    position: absolute;
+    background-color: #262626;
+    top: 70px;
+    right: -7.5%;
+    padding: 20px;
+    display: none;
+    border-radius: 20px;
+    gap: 10px;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .a-page {
+    padding: 15px;
+    color: unset;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    font-size: 25px;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .a-page:hover {
+    transition-duration: 0.3s;
+    filter: brightness(50%);
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .a-page div {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+    transition-duration: 0.3s;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #333333;
+    position: relative;
+    margin: 10px auto;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv {
+    display: block;
+    position: relative;
+    margin: 0;
+    width: fit-content !important;
+    height: fit-content !important;
+    padding: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv {
+    width: max-content !important;
+    height: fit-content !important;
+    background-repeat: unset;
+    gap: 15px;
+    flex-direction: row-reverse;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv .texts {
+    display: unset;
+    width: 120px;
+    height: fit-content;
+    text-align: start;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv .texts p {
+    width: fit-content;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv .texts p:nth-child(1) {
+    font-size: clamp(1vw, 15px, 18px);
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv .texts p:nth-child(2) {
+    color: var(--color-main);
+    font-size: clamp(1.2vw, 20px, 23px);
+    overflow-x: hidden;
+    width: 100%;
+  }
+  #HEADER .mobile-menu-icon .mobile-menu .userdiv .flexdiv .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  body[id=GDPR] .main h1 {
+    font-size: 11vw;
+  }
+  body[id=HOME] .main .flex-parent .flex-child h1, body[id=HOME] .main .flex-parent .flex-child h1:nth-child(1) span {
+    font-size: 11vw;
+    line-height: 12vw;
+  }
+  body[id=HOME] .main .flex-parent {
+    flex-wrap: nowrap;
+  }
+  body[id=HOME] .main .flex-parent .flex-child {
+    max-width: none;
+    margin-left: 0;
+  }
+  body[id=HOME] .main .flex-parent .flex-child .content {
+    width: fit-content;
+    font-size: 3.3vw;
+    line-height: normal;
+    margin-top: 2.8vw;
+  }
+  body[id=HOME] .main .flex-parent .flex-child .content span {
+    font-size: 3vw;
+  }
+  body[id=HOME] .main .blob {
+    left: 187vw;
+  }
+  body[id=HOME] .main .statistics {
+    margin-left: 0;
+  }
+  body[id=HOME] .main .statistics div p:nth-child(1) {
+    font-size: 5vw;
+  }
+  body[id=HOME] .main .statistics div p:nth-child(2) {
+    font-size: 3vw;
+  }
+  body[id=ACTIVITIES] .main .mainh1 {
+    font-size: 11vw;
+  }
+  body[id=ACTIVITIES] .main .mainh1::after {
+    height: 0.7vw;
+    bottom: 2.8vw;
+  }
+  body[id=ACTIVITIES] .main form .searchbar .kontank .tags {
+    font-size: 20px;
+    width: 55vw;
+  }
+  body[id=LECTURERS] section .mainh1 {
+    font-size: 11vw;
+  }
+  body[id=LECTURERS] section .mainh1::after {
+    height: 0.7vw;
+    bottom: 2.8vw;
+  }
+  body[id=LECTURERS] section .lecturers {
+    max-width: 90vw;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka {
+    justify-content: center;
+    gap: 20px;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka #pfp {
+    width: 140px;
+    height: 140px;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description {
+    width: unset;
+    justify-content: center;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description h1 {
+    font-size: 43px;
+    justify-content: center;
+    flex-direction: row;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description h1 .name {
+    text-align: center;
+    line-height: 43px;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description h1 .title {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description #tags {
+    justify-content: center;
+  }
+  body[id=LECTURERS] section .lecturers .vizitka .description #claim {
+    justify-content: center;
+    text-align: center;
+  }
+  body[id=LECTURER] .main .table {
+    width: 80vw;
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  body[id=LECTURER] .main .table .left h1:is(.mainh1):after {
+    height: 7px;
+    bottom: 0;
+    right: unset;
+    left: 0;
+  }
+  body[id=LECTURER] .main .table .left .title {
+    line-height: 30px;
+    font-size: 30px;
+  }
+  body[id=LECTURER] .main .table .left .t2 {
+    text-align: end;
+  }
+  body[id=LECTURER] .main .table .left .name {
+    font-size: 50px;
+    line-height: 50px;
+    text-align: center;
+  }
+  body[id=LECTURER] .main .table .left .bio {
+    text-align: justify;
+    font-size: clamp(3.4vw, 18px, 3.4vw);
+    max-width: unset;
+  }
+  body[id=LECTURER] .main .table .left .cilt .cil {
+    flex-wrap: wrap;
+  }
+  body[id=LECTURER] .main .table .left .contact .c {
+    font-size: 4.5vw;
+  }
+  body[id=LECTURER] .main .table .right {
+    display: flex;
+    justify-content: center;
+  }
+  body[id=LECTURER] .main .table .right .avatar {
+    width: 170px;
+    height: 170px;
+  }
+  body[id=LOGIN] .main .parent,
+  body[id=REGISTER] .main .parent {
+    width: 80vw;
+    margin: auto;
+  }
+  body[id=LOGIN] .main .parent .mainh1,
+  body[id=REGISTER] .main .parent .mainh1 {
+    font-size: 11vw;
+  }
+  body[id=LOGIN] .main .parent .mainh1::after,
+  body[id=REGISTER] .main .parent .mainh1::after {
+    height: 0.7vw;
+    bottom: 2.8vw;
+  }
+  body[id=LOGIN] .main .parent .p1,
+  body[id=REGISTER] .main .parent .p1 {
+    font-size: clamp(3vw, 16px, 3.7vw);
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  body[id=LOGIN] .main .parent .p2,
+  body[id=REGISTER] .main .parent .p2 {
+    font-size: clamp(3vw, 16px, 3.7vw);
+  }
+  body[id=LOGIN] .main form .login-box,
+  body[id=REGISTER] .main form .login-box {
+    width: 80vw;
+  }
+  body[id=ACCOUNT] #modal-lecturercalendar .bottom .flex #calendar table tr th,
+  body[id=ACCOUNT] #modal-lecturercalendar .bottom .flex #calendar table tr td,
+  body[id=ACCOUNT] #lecturer-calendar .bottom .flex #calendar table tr th,
+  body[id=ACCOUNT] #lecturer-calendar .bottom .flex #calendar table tr td,
+  body[id=LECTURER] #modal-lecturercalendar .bottom .flex #calendar table tr th,
+  body[id=LECTURER] #modal-lecturercalendar .bottom .flex #calendar table tr td,
+  body[id=LECTURER] #lecturer-calendar .bottom .flex #calendar table tr th,
+  body[id=LECTURER] #lecturer-calendar .bottom .flex #calendar table tr td {
+    min-width: 8vw;
+    min-height: 8vw;
+  }
+  body[id=ACCOUNT] #lecturer-calendar,
+  body[id=LECTURER] #lecturer-calendar {
+    width: 90vw;
+    margin-top: 80px;
+  }
+  body[id=ACCOUNT] #lecturer-calendar .bottom .flex,
+  body[id=LECTURER] #lecturer-calendar .bottom .flex {
+    flex-wrap: wrap;
+    height: fit-content;
+  }
+  body[id=ACCOUNT] #modal-lecturercalendar,
+  body[id=LECTURER] #modal-lecturercalendar {
+    width: 90vw;
+  }
+  body[id=ACCOUNT] #modal-lecturercalendar .bottom .flex,
+  body[id=LECTURER] #modal-lecturercalendar .bottom .flex {
+    flex-wrap: wrap;
+    height: fit-content;
+  }
+  body[id=ACCOUNT] .main .mainh1 {
+    font-size: 11vw;
+    margin-bottom: 20px;
+  }
+  body[id=ACCOUNT] .main .mainh1::after {
+    height: 0.7vw;
+    bottom: 2.8vw;
+  }
+  body[id=ACCOUNT] .main .userinfointerface {
+    flex-direction: column;
+    width: 90vw;
+    gap: 50px;
+    align-items: center;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left {
+    width: 75vw;
+    padding: 30px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .avatar {
+    width: 150px;
+    height: 150px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .membersincetxt {
+    transform: none;
+    display: block;
+    position: unset;
+    margin-top: 10px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .left .info .pair p:nth-child(1) {
+    margin-bottom: 5px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right {
+    width: 75vw;
+    height: auto;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right input[type=text], body[id=ACCOUNT] .main .userinfointerface .right select, body[id=ACCOUNT] .main .userinfointerface .right input[type=date], body[id=ACCOUNT] .main .userinfointerface .right input[type=number] {
+    font-size: 17px;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings div {
+    display: grid !important;
+    gap: 30px !important;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings .pair {
+    gap: 0px !important;
+  }
+  body[id=ACCOUNT] .main .userinfointerface .right .accountsettings input {
+    width: 100% !important;
+    margin-top: 10px;
+  }
+  #FOOTER .content .content-flex .c #team {
+    text-align: center;
+  }
+  #FOOTER .content .content-flex {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  #FOOTER .content .copyright {
+    padding: 0 30px;
+  }
+  #FOOTER .content .logo {
+    height: 66px;
+    width: 100px;
+    margin: 50px auto 50px;
+  }
+}
+@media screen and (max-width: 560px) {
+  body[id=LECTURER] #modal-lecturercalendar .bottom .confirmation, body[id=LECTURER] #lecturer-calendar .bottom .confirmation {
+    min-width: 300px !important;
+  }
+  body[id=LECTURER] #modal-lecturercalendar .bottom .confirmation .center #reservationForm div:nth-child(1) {
+    width: 80vw;
+    margin: auto;
+  }
+  body[id=LECTURER] #modal-lecturercalendar .bottom .confirmation .center #reservationForm div input {
+    font-family: opensans-medium, Calibri, sans-serif;
+  }
+  body[id=LECTURER] #modal-lecturercalendar .bottom .confirmation .center #reservationForm .buttons {
+    width: unset !important;
+  }
+  body[id=LECTURER] #modal-lecturercalendar .bottom .confirmation .center #reservationForm .buttons button {
+    width: 80vw !important;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,5 @@
+config/local.neon
+vendor
+.idea/workspace.xml
+/php/styles/variables.css
+/php/styles/variables.css.map

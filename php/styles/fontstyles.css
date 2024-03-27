@@ -1,0 +1,26 @@
+@font-face {
+    font-family: lalezar;
+    font-weight: normal;
+    src: url("../fonts/Lalezar-Regular.ttf");
+}
+
+@font-face {
+    font-family: opensans;
+    font-weight: normal;
+    src: url("../fonts/OpenSans.ttf");
+}
+
+@font-face {
+    font-family: opensans-medium;
+    font-weight: normal;
+    src: url("../fonts/OpenSans-Medium.ttf");
+}
+
+h1, h2 {
+    font-family: lalezar, Calibri, sans-serif;
+    font-weight: lighter;
+}
+
+p,a,button {
+    font-family: opensans-medium, Calibri, sans-serif;
+}

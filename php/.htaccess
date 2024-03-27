@@ -1,0 +1,28 @@
+Require all granted
+RewriteEngine On
+
+# disable directory listing
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Přesměrování /lecturer/uuid na /lecturer.php?uuid=uuid
+RewriteRule ^lecturer/([^/]+)$ lecturer.php?uuid=$1 [QSA,L]
+RewriteRule ^activity/([^/]+)$ activity.php?q=$1 [QSA,L]
+
+# Přesměrování na .php, pokud existuje
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# Typ souboru API je json
+<Files "api">
+    ForceType 'application/json'
+</Files>
+
+
+#php_flag display_errors on
+ErrorDocument 404 /error.php?c=404
+ErrorDocument 403 /error.php?c=403
+ErrorDocument 500 /error.php?c=500
+ErrorDocument 502 /error.php?c=502
