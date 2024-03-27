@@ -1,5 +1,16 @@
 # Tour de App 2024 - Error Makers
 
+### Screenshoty
+![s1](/img/1.png)
+![s2](/img/2.png)
+![s3](/img/3.png)
+![s4](/img/4.png)
+![s5](/img/5.png)
+![s6](/img/6.png)
+![s7](/img/7.png)
+
+
+
 ### Grandfinale - OpenAI API
 Bylo použitý jen v /activities v search baru když uživatel něco napíše, tak to vypíše aktivity podle zadaných slov.
 
